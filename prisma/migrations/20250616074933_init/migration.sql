@@ -17,6 +17,7 @@ CREATE TABLE "Post" (
     "CreatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "lastUpdated" TIMESTAMP(3) NOT NULL,
     "isDeleted" BOOLEAN NOT NULL DEFAULT false,
+    "userId" TEXT NOT NULL,
 
     CONSTRAINT "Post_pkey" PRIMARY KEY ("id")
 );
@@ -28,4 +29,4 @@ CREATE UNIQUE INDEX "User_email-address_key" ON "User"("email-address");
 CREATE UNIQUE INDEX "User_Username_key" ON "User"("Username");
 
 -- AddForeignKey
-ALTER TABLE "Post" ADD CONSTRAINT "Post_id_fkey" FOREIGN KEY ("id") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Post" ADD CONSTRAINT "Post_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

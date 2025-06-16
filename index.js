@@ -4,10 +4,9 @@ const { PrismaClient} = require("@prisma/client");
 const prisma = new PrismaClient();
 
 const app = express();
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 5000;
 app.use(express.json());
 
-// Home
 app.get ('/', (_req, res) => {res.send('<h1> Start a Blog API</h1>')})
 
 //Get all Users
@@ -50,6 +49,7 @@ app.post ("/users" , async (req, res) => {
   });
   res.json(newUser);
  } catch (error){
+  // console.log("Error creating user:", error);
   return res.status(500).json
   ({message: "Error creating user. Please try again later."})
  }
@@ -75,7 +75,7 @@ app.get("/posts/:id", async (req, res) => {
     });
     res.json(post);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return res.status(500).json({ message: "Error fetching blog" });
   }
 });
